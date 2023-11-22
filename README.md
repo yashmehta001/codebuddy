@@ -43,4 +43,4 @@ and returns a json in the following format by evaluating the expression.
 # B. NestJS middleware
 1. Implement a NestJS middleware that logs the request URL, method, time taken to execute the request and response status code.
 2. The middleware should be applied to all the routes.
-3. The response example: `GET /calc 200 1.2 ms`
+3. The log text example: `GET /calc 200 1.2 ms`
