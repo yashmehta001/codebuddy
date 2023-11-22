@@ -1,73 +1,46 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Welcome to Round 3 of your Backend with NestJs Interview
+# ![CodeBuddy Round 3 Interview](https://codebuddy.co/assets/img/Logo.svg)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+> This round is to test your **Logical thinking, coding skills, reading skills and NestJs basics**.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+> This repo uses NestJs and Jest to create a backend server and perform e2e tests.
 
-## Description
+> **_Please carefully read the instructions mentioned below._**
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+**DON'T CLONE THIS REPO and DON'T MAKE PULL REQUESTS TO THIS REPO.** FORK this repo to your own GitHub account then clone it. Fork button is the top right corner of the page. The forked URL should look something like this: https://github.com/${YOUR_GITHUB_USERNAME}/node
 
-## Installation
-
-```bash
-$ pnpm install
+# A. Calculator
+1. Implement a post route http://localhost:3000/calc that takes a JSON input in the following format:
+```json
+{
+  "expression": "<expression>"
+}
 ```
-
-## Running the app
-
-```bash
-# development
-$ pnpm run start
-
-# watch mode
-$ pnpm run start:dev
-
-# production mode
-$ pnpm run start:prod
+and returns a json in the following format by evaluating the expression.
+```json
+{
+  "result": "<result>"
+}
 ```
-
-## Test
-
-```bash
-# unit tests
-$ pnpm run test
-
-# e2e tests
-$ pnpm run test:e2e
-
-# test coverage
-$ pnpm run test:cov
+2. You cannot use `evel` or any other third party library to evaluate the expression.
+3. You cannot add or remove any files from the project.
+4. You can only work inside calc/calc.service.ts@calculateExpression method.
+5. In case the expression is invalid, return a json in the following format with 400 status code
+```json
+{
+  "statusCode": 400,
+  "message": "Invalid expression provided",
+  "error": "Bad Request"
+}
 ```
+6. You need to implement +, -, *, / operations. Handling Operator precedence is optional.
+7. The repository contains 6 test cases. You need to make sure all of them pass. In case operator precedence is not handled run `pnpm test:basic` command to run only the basic test cases. Otherwise, run `pnpm test:advanced` to run all the test cases.
+8. Follow the test case files to understand the input and output format.
+- i. test/simpleCalc.e2e-spec.ts
+- ii. test/operatorPrecedenceNotHandled.e2e-spec.ts
+- iii. test/invalidExpression.e2e-spec.ts
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+# B. NestJS middleware
+1. Implement a NestJS middleware that logs the request URL, method, time taken to execute the request and response status code.
+2. The middleware should be applied to all the routes.
+3. The response example: `GET /calc 200 1.2 ms`

@@ -1,10 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
+// calc.e2e-spec.ts
 
-describe('AppController (e2e)', () => {
-  let app: INestApplication;
+import { Test, TestingModule } from '@nestjs/testing';
+import { AppModule } from '../src/app.module';
+import * as request from 'supertest';
+
+describe('CalcController (e2e)', () => {
+  let app;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -15,10 +16,11 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('5. /calc (POST) - Test operator precedence is not handled', () => {
     return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
+      .post('/calc')
+      .send({ expression: '1+2*3' })
+      .expect(201)
+      .expect({ result: 9 });
   });
 });
