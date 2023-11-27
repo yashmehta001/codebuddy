@@ -44,3 +44,5 @@ and returns a json in the following format by evaluating the expression.
 1. Implement a NestJS middleware that logs the request URL, method, time taken to execute the request and response status code.
 2. The middleware should be applied to all the routes.
 3. The log text example: `GET /calc 200 1.2 ms`
+
+## > Total allocated time for the these 2 task is 2.5hr. In case you need more than the allocated time, communicate with your recruiter.
